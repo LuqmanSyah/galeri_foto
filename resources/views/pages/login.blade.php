@@ -6,13 +6,6 @@
       <h1 class="text-center mb-5">Login</h1>
       <form action="{{ route('login.process') }}" method="POST">
         @csrf
-        @if (session('error'))
-          <div class="mb-3">
-            <div class="alert alert-danger">
-              {{ session('error') }}
-            </div>
-          </div>
-        @endif
         <div class="mb-3">
           <label for="nis" class="form-label">NIS</label>
           <input type="number" class="form-control" id="nis" name="nis" placeholder="Masukkan NIS">

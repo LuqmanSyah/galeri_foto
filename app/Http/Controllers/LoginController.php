@@ -24,11 +24,11 @@ class LoginController extends Controller
         $credentials = $request->only('nis', 'password');
 
         if (Auth::attempt($credentials)) {
-            Alert::success('Login berhasil!');
+            Alert::success('Berhasil!', 'Login berhasil!');
             return redirect()->route('home');
         } else {
-            Alert::error('Login gagal!');
-            return back()->with('error', 'NIS atau Password salah');
+            Alert::error('Gagal!', 'NIS atau Password salah');
+            return back();
         }
     }
 }

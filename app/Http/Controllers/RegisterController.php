@@ -18,11 +18,11 @@ class RegisterController extends Controller
     {
         $validatedData = $request->validate([
             'nama' => ['required', 'string', 'max:255'],
-            'nis' => ['required', 'integer', 'min:9', 'unique:users,nis'],
+            'nis' => ['required', 'integer', 'digits:9', 'unique:users,nis'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'string', 'min:3']
         ]);
-        
+
         $user = User::create($validatedData);
 
         if ($user) {

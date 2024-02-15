@@ -28,7 +28,7 @@ class LoginController extends Controller
             return redirect()->route('home');
         } else {
             Alert::error('Login gagal!');
-            return back();
+            return back()->with('error', 'NIS atau Password salah');
         }
     }
 }

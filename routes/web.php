@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\PagesController as AdminPagesController;
 use App\Http\Controllers\User\PagesController as UserPagesController;
 use App\Http\Controllers\User\ProfileController as UserProfileController;
+use App\Http\Controllers\User\PhotoController as UserPhotoController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Auth;
@@ -34,6 +35,12 @@ Route::post('/register', [RegisterController::class, 'processRegister'])->name('
 
 Route::get('/profile', [UserPagesController::class, 'profile'])->name('profile');
 Route::post('/profile/{id}', [UserProfileController::class, 'update'])->name('profile.update');
+
+Route::controller(UserPhotoController::class)->middleware('auth')->name('photo.')->group(function () {
+    Route::get('/photos', 'index')->name('index');
+    Route::post('/photos', 'store')->name('store');
+    Route::get('photo/{id}', 'show')->name('detail');
+});
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminPagesController::class, 'index'])->name('index');

@@ -7,9 +7,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav me-auto">
-        <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
-        <a class="nav-link" href="#">Albums</a>
-        <a class="nav-link" href="#">Photos</a>
+        <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">Home</a>
+        @if (Auth::check())
+          <a class="nav-link" href="#">Albums</a>
+          <a class="nav-link {{ request()->routeIs('photo.index') ? 'active' : '' }}" href="{{ route('photo.index') }}">Photos</a>
+        @endif
       </div>
       @if (Auth::check())
         <div class="dropdown">

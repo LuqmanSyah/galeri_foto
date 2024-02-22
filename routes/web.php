@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Admin\PagesController as AdminPagesController;
+use App\Http\Controllers\User\PagesController as UserPagesController;
+use App\Http\Controllers\User\ProfileController as UserProfileController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Auth;
@@ -17,9 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.app');
-})->name('home');
+Route::get('/', [UserPagesController::class, 'home'])->name('home');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login.index');
 Route::post('/login', [LoginController::class, 'processLogin'])->name('login.process');
@@ -32,6 +32,9 @@ Route::get('/logout', function () {
 Route::get('/register', [RegisterController::class, 'index'])->name('register.index');
 Route::post('/register', [RegisterController::class, 'processRegister'])->name('register.process');
 
-Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(function() {
-    Route::get('/', [DashboardController::class, 'index'])->name('index');
+Route::get('/profile', [UserPagesController::class, 'profile'])->name('profile');
+Route::post('/profile/{id}', [UserProfileController::class, 'update'])->name('profile.update');
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', [AdminPagesController::class, 'index'])->name('index');
 });

@@ -36,7 +36,7 @@
                     @enderror
                 </div>
                 <button type="submit" class="btn btn-primary w-100 mb-3 mt-3">Daftar</button>
-                <p class="text-center mb-0">Sudah punya akun? <a href="{{ route('login.index') }}" class="text-decoration-none">Login</a>
+                <p class="text-center mb-0">Have an account? <a href="{{ route('login.index') }}" class="text-decoration-none">Login</a>
                 </p>
             </form>
         </div>

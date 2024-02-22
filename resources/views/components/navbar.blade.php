@@ -7,9 +7,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav me-auto">
-        <a class="nav-link active" aria-current="page" href="#">Beranda</a>
-        <a class="nav-link" href="#">Galeri</a>
-        <a class="nav-link" href="#">Pricing</a>
+        <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
+        <a class="nav-link" href="#">Albums</a>
+        <a class="nav-link" href="#">Photos</a>
       </div>
       @if (Auth::check())
         <div class="dropdown">
@@ -19,9 +19,7 @@
           </a>
 
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Profile</a></li>
-            <li><a class="dropdown-item" href="{{ route('dashboard.index') }}">Dashboard</a></li>
-            <hr>
+            <li><a class="dropdown-item" href="{{ route('profile') }}">Profile</a></li>
             <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
           </ul>
         </div>
